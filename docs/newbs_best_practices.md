@@ -9,10 +9,9 @@ This document assumes a few things:
 1. You have a GitHub account, and have [forked the qmk_firmware repository](getting_started_github.md) to your account.
 2. You've [set up your build environment](newbs_getting_started.md?id=environment-setup).
 
-
 ## Your fork's master: Update Often, Commit Never
 
-It is highly recommended for QMK development, regardless of what is being done or where, to keep your `master` branch updated, but ***never*** commit to it. Instead, do all your changes in a development branch and issue pull requests from your branches when you're developing.
+It is highly recommended for QMK development, regardless of what is being done or where, to keep your `master` branch updated, but **_never_** commit to it. Instead, do all your changes in a development branch and issue pull requests from your branches when you're developing.
 
 To reduce the chances of merge conflicts &mdash; instances where two or more users have edited the same part of a file concurrently &mdash; keep your `master` branch relatively up-to-date, and start any new developments by creating a new branch.
 
@@ -68,14 +67,14 @@ By default `git checkout -b` will base your new branch on the branch that is che
 git checkout -b dev_branch master
 ```
 
-Now that you have a development branch, open your text editor and make whatever changes you need to make. It is recommended to make many small commits to your branch; that way, any change that causes issues can be more easily traced and undone if needed. To make your changes, edit and save any files that need to be updated, add them to Git's *staging area*, and then commit them to your branch:
+Now that you have a development branch, open your text editor and make whatever changes you need to make. It is recommended to make many small commits to your branch; that way, any change that causes issues can be more easily traced and undone if needed. To make your changes, edit and save any files that need to be updated, add them to Git's _staging area_, and then commit them to your branch:
 
 ```
 git add path/to/updated_file
 git commit -m "My commit message."
 ```
 
-`git add` adds files that have been changed to Git's *staging area*, which is Git's "loading zone." This contains the changes that are going to be *committed* by `git commit`, which saves the changes to the repo. Use descriptive commit messages so you can know what was changed at a glance.
+`git add` adds files that have been changed to Git's _staging area_, which is Git's "loading zone." This contains the changes that are going to be _committed_ by `git commit`, which saves the changes to the repo. Use descriptive commit messages so you can know what was changed at a glance.
 
 !> If you've changed a lot of files, but all the files are part of the same change, you can use `git add .` to add all the changed files that are in your current directory, rather than having to add each file individually.
 
@@ -83,14 +82,13 @@ git commit -m "My commit message."
 
 The last step is to push your changes to your fork. To do this, enter `git push`. Git now publishes the current state of `dev_branch` to your fork.
 
-
 ## Resolving Merge Conflicts
 
-Sometimes when your work in a branch takes a long time to complete, changes that have been made by others conflict with changes you have made to your branch when you open a pull request. This is called a *merge conflict*, and is what happens when multiple people edit the same parts of the same files.
+Sometimes when your work in a branch takes a long time to complete, changes that have been made by others conflict with changes you have made to your branch when you open a pull request. This is called a _merge conflict_, and is what happens when multiple people edit the same parts of the same files.
 
 ### Rebasing Your Changes
 
-A *rebase* is Git's way of taking changes that were applied at one point, reversing them, and then applying the same changes to another point. In the case of a merge conflict, you can rebase your branch to grab the changes that were made between when you created your branch and the present time.
+A _rebase_ is Git's way of taking changes that were applied at one point, reversing them, and then applying the same changes to another point. In the case of a merge conflict, you can rebase your branch to grab the changes that were made between when you created your branch and the present time.
 
 To start, run the following:
 
@@ -138,16 +136,12 @@ To abort and get back to the state before "git rebase", run "git rebase --abort"
 This tells us that we have a merge conflict, and gives the name of the file with the conflict. Open the conflicting file in your text editor, and somewhere in the file, you'll find something like this:
 
 ```
-<<<<<<< HEAD
 <p>For help with any issues, email us at support@webhost.us.</p>
-=======
-<p>Need help? Email support@webhost.us.</p>
->>>>>>> Commit #1
 ```
 
 The line `<<<<<<< HEAD` marks the beginning of a merge conflict, and the `>>>>>>> Commit #1` line marks the end, with the conflicting sections separated by `=======`. The part on the `HEAD` side is from the QMK master version of the file, and the part marked with the commit message is from the current branch and commit.
 
-Because Git tracks *changes to files* rather than the contents of the files directly, if Git can't find the text that was in the file previous to the commit that was made, it won't know how to edit the file. Re-editing the file will solve the conflict. Make your changes, and then save the file.
+Because Git tracks _changes to files_ rather than the contents of the files directly, if Git can't find the text that was in the file previous to the commit that was made, it won't know how to edit the file. Re-editing the file will solve the conflict. Make your changes, and then save the file.
 
 ```
 <p>Need help? Email support@webhost.us.</p>
