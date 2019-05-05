@@ -10,11 +10,11 @@
 
 // config options
 // custon moust config
-#define MOUSEKEY_DELAY             50 // 300
-#define MOUSEKEY_INTERVAL          40 // 50
-#define MOUSEKEY_MAX_SPEED         8 // 10
-#define MOUSEKEY_TIME_TO_MAX       5 // 20
-#define MOUSEKEY_WHEEL_MAX_SPEED   15  // 8
-#define MOUSEKEY_WHEEL_TIME_TO_MAX 20 // 40
+#define MOUSEKEY_DELAY 30              // 300
+#define MOUSEKEY_INTERVAL 50           // 50
+#define MOUSEKEY_MAX_SPEED 10          // 10
+#define MOUSEKEY_TIME_TO_MAX 10        // 20
+#define MOUSEKEY_WHEEL_MAX_SPEED 15    // 8
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 20  // 40
 
 #endif
