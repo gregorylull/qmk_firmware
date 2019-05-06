@@ -1,6 +1,6 @@
 // GLULL
 
-#include "clueboard.h"
+#include QMK_KEYBOARD_H
 
 // Helpful defines
 #define GRAVE_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT)|MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI)|MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
@@ -20,10 +20,10 @@
 
 // Quantum key shorcuts
 // mac OSX
-#define Q_GS_ESC SCMD_T(KC_ESC) 
+#define Q_GS_ESC SCMD_T(KC_ESC)
 
 // ubuntu
-#define Q_GS_ESC SCMD_T(KC_ESC) 
+#define Q_GS_ESC SCMD_T(KC_ESC)
 
 // SPECIAL KEYS
 #define MT_C_ES LCTL_T(KC_ESC)
@@ -36,7 +36,7 @@ enum {
 };
 
 // TAP DANCE KEYS
-#define CT_EGT TD(CT_ESC_GRAVE_TILDE)
+// #define CT_EGT TD(CT_ESC_GRAVE_TILDE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _DEFAULT_MAC
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC, KC_BSLS,                   KC_PGDN, \
   MT_C_ES, KC_A,    KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  KC_NUHS, KC_ENT,                             \
   KC_LSFT, KC_LSFT, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,  KC_RSFT, KC_RSPC,          KC_UP,            \
-  MO(_ML), KC_LCTL, KC_LALT,KC_LGUI,        KC_SPC,KC_SPC,                          MT_G_ES,  KC_RALT,  KC_RCTL, MO(_FL), KC_LEFT, KC_DOWN, KC_RGHT),
+  MO(_ML), KC_LCTL, KC_LGUI,KC_LALT,        KC_SPC,KC_SPC,                          MT_G_ES,  KC_RALT,  KC_RCTL, MO(_FL), KC_LEFT, KC_DOWN, KC_RGHT),
 
   /* Keymap _FL: Function Layer
    * RGB RED
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 /* Keymap _ML: Mouse layer (from magic_monty) */
 [_ML] = KEYMAP(
-  KC_GR,    KC_1,    KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,    KC_0,     KC_MINS,  KC_EQL,  _______,  KC_BSPC,              KC_VOLU, \
+  KC_GRV,  KC_1,    KC_2,   KC_3,   KC_4,   KC_5,   KC_6,   KC_7,   KC_8,   KC_9,    KC_0,     KC_MINS,  KC_EQL,  _______,  KC_BSPC,              KC_VOLU, \
   _______, _______, _______, _______, _______, _______, _______, KC_WH_U, KC_MS_U, KC_WH_D,  _______, _______,  _______, _______,                  KC_VOLD, \
   _______, _______, KC_BTN2, KC_BTN3, KC_BTN1, _______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R,  KC_WH_R, _______,  _______, _______,                            \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______,  _______, _______,          KC_MUTE,          \
@@ -176,31 +176,31 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
 //     return MACRO_NONE;
 // };
 
-void ct_esc_grave_tilde (qk_tap_dance_state_t *state, void *user_data) {
-  switch (state->count) {
-  case 1:
-    register_code(KC_ESC);
-    unregister_code(KC_ESC);
-    break;
-  case 2:
-    register_code(KC_GRV);
-    unregister_code(KC_GRV);
-    break;
-  case 3:
-    register_code(KC_LSFT);
-    register_code(KC_GRV);
+// void ct_esc_grave_tilde (qk_tap_dance_state_t *state, void *user_data) {
+//   switch (state->count) {
+//   case 1:
+//     register_code(KC_ESC);
+//     unregister_code(KC_ESC);
+//     break;
+//   case 2:
+//     register_code(KC_GRV);
+//     unregister_code(KC_GRV);
+//     break;
+//   case 3:
+//     register_code(KC_LSFT);
+//     register_code(KC_GRV);
 
-    unregister_code(KC_GRV);
-    unregister_code(KC_LSFT);
-    break;
-  case 4:
-    reset_tap_dance(state);
-  }
-}
+//     unregister_code(KC_GRV);
+//     unregister_code(KC_LSFT);
+//     break;
+//   case 4:
+//     reset_tap_dance(state);
+//   }
+// }
 
 //Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-  //Tap once for Esc, twice for grave(backtick), thrice for tilde
-  [CT_ESC_GRAVE_TILDE]  = ACTION_TAP_DANCE_FN(ct_esc_grave_tilde)
-// Other declarations would go here, separated by commas, if you have them
-};
+// qk_tap_dance_action_t tap_dance_actions[] = {
+//   //Tap once for Esc, twice for grave(backtick), thrice for tilde
+//   [CT_ESC_GRAVE_TILDE]  = ACTION_TAP_DANCE_FN(ct_esc_grave_tilde)
+// // Other declarations would go here, separated by commas, if you have them
+// };
